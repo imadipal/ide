@@ -44,9 +44,32 @@
         </div>
       </div>
     </div>
+    <div
+      class="control-panel"
+      style="
+        background: lightgray;
+        text-align: right;
+        padding: 4px;
+        font-family: sans-serif;
+      "
+    >
+      Select Language: &nbsp; &nbsp;
+      <select
+        id="languages"
+        class="languages"
+        style="background: white; border: 1px solid gray"
+        onchange="changeLanguage()"
+      >
+        <option value="python">Python</option>
+        <option value="cpp">C++</option>
+        <option value="php">PHP</option>
+        <option value="c">C</option>
+        <option value="node">Node JS</option>
+      </select>
+    </div>
     <div class="container-fluid">
       <div class="row">
-        <div class="col-sm-12 ml-5 mr-5 mt-5 mb-5">
+        <div class="col-sm-12 ml-5 mr-5 mt-3 mb-5">
           <form action="/home/run" method="post">
             {% csrf_token %}
             <div class="form-group row">
@@ -108,5 +131,8 @@
         </div>
       </div>
     </div>
+    <script src="static/lib/ace.js"></script>
+    <script src="static/lib/theme-monokai.js"></script>
+    <script src="static/functionality.js"></script>
   </body>
 </html>

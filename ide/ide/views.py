@@ -1,7 +1,11 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 import sys
-# Create your views here.
+import json
+import requests
+from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
+
 def greetings(request):
     res = render(request,'home.html')
     return res
@@ -30,3 +34,22 @@ def runcode(request):
         print(output)
     res = render(request,'home.html',{"code":code_part,"input":y,"output":output})
     return res
+
+@csrf_exempt
+def evaluate_code(request):
+    if request.method == 'POST':
+        code = request.POST['code_area']
+
+        # Change the url where golang server will be deployed
+        oj_server_url = 'http://localhost:8080/evaluate'
+
+        payload = {'code': code}
+
+        try:
+            response = requests.post(oj_server_url, json=payload)
+            data = json.loads(response.text)
+            return JsonResponse(data)
+        except requests.RequestException as e:
+            return JsonResponse({'success': False, 'error': str(e)})
+
+    return JsonResponse({'success': False, 'error': 'Invalid request method'})
