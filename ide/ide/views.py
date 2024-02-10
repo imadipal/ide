@@ -7,7 +7,7 @@ from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 
 def greetings(request):
-    res = render(request,'home.html')
+    res = render(request,'index.html')
     return res
 
 def runcode(request):
