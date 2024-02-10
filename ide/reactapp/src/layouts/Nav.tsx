@@ -4,7 +4,7 @@ import { Navbar } from 'flowbite-react';
 const Nav = () => {
 
   return (
-    <Navbar fluid rounded>
+    <Navbar fluid rounded >
       <Navbar.Brand href="#">
         <img src="https://flowbite.com/docs/images/logo.svg" className="mr-3 h-6 sm:h-9" alt="Algo IDE logo" />
         <span className="self-center whitespace-nowrap text-xl font-semibold dark:text-white">Algo IDE</span>

@@ -22,7 +22,7 @@ const Foot = () => {
           </FooterLinkGroup>
         </div>
         <FooterDivider />
-        <FooterCopyright href="#" by="Flowbite™" year={2022} />
+        <FooterCopyright href="#" by="AlgoIDE™" year={2024} />
       </div>
     </Footer>
   );
