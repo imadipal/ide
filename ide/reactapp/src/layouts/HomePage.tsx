@@ -1,19 +1,15 @@
 import CodeMirror from "@uiw/react-codemirror";
+import CodeEditor from '@uiw/react-textarea-code-editor';
 import "codemirror/lib/codemirror.css";
 import "codemirror/mode/javascript/javascript";
-import "codemirror/mode/python/python";
 import { Button, Dropdown, Label } from "flowbite-react";
 import { FormEvent, useState } from "react";
 export const HomePage = () => {
-  const code = "print('Welcome to Algo IDE!')";
+    const [code, setCode] = useState(
+        `print('Welcome to Algo IDE!')`
+      );
   const [lang,setLang]=useState("python");
   const [selectedLanguage, setSelectedLanguage] = useState('Python');
-
-  const options = {
-    lineNumbers: true,
-    mode: {lang},
-    extraKeys: { "Ctrl-Space": "autocomplete" },
-  };
   const handleOnChange=  (event: FormEvent<HTMLButtonElement>) =>{
     const e=(document.getElementById("dropdown") as HTMLInputElement);
     setLang(e.value);
@@ -37,49 +33,52 @@ export const HomePage = () => {
             htmlFor="code"
             value="Code"
           />
-          <CodeMirror
-            options={options}
-            className=" mt-2 ml-2 mb-2 mr-2"
-            value={code}
-            height="80vh"
-            width="auto"
-            theme={"dark"}
-          />
+          <CodeEditor
+          className="m-2 h-5/6 max-h-screen"
+          value={code}
+          data-color-mode="dark"
+          language={lang}
+          placeholder="Please enter code."
+          onChange={(evn) => setCode(evn.target.value)}
+          style={{
+            fontFamily: 'ui-monospace,SFMono-Regular,SF Mono,Consolas,Liberation Mono,Menlo,monospace',
+
+          }}/>
         </div>
         <div className="gap-4 grid grid-rows-2">
           <div>
             <Label
-              className=" font-bold mt-2 ml-2 mb-2 mr-2"
+              className=" font-bold m-2"
               htmlFor="input"
               value="Input"
             />
             <CodeMirror
-              className=" mt-2 ml-2 mb-2 mr-2"
+              className=" m-2"
               value={""}
-              height="30vh"
+              height="36vh"
               width="auto"
               theme={"dark"}
             />
           </div>
           <div>
             <Label
-              className=" font-bold mt-2 ml-2 mb-2 mr-2"
+              className=" font-bold m-2"
               htmlFor="output"
               value="Output"
             />
             <CodeMirror
-              className=" mt-2 ml-2 mb-2 mr-2"
+              className=" m-2"
               value={""}
-              height="30vh"
+              height="36vh"
               width=""
               theme={"dark"}
             />
           </div>
           <div className="grid gap-4 grid-cols-2">
-            <Button className="mt-2 ml-2 mb-2 mr-2 bg-red-500 hover:bg-red-600 text-white font-bold rounded">
+            <Button className="m-2 bg-red-500 hover:bg-red-600 text-white font-bold rounded">
               Run
             </Button>
-            <Button className="mt-2 ml-2 mb-2 mr-2 bg-green-500 hover:bg-green-600 text-white font-bold rounded">
+            <Button className="m-2 bg-green-500 hover:bg-green-600 text-white font-bold rounded">
               Submit
             </Button>
           </div>
