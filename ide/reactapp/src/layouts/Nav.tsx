@@ -15,7 +15,7 @@ const Nav = () => {
       </Navbar.Brand>
       <Navbar.Toggle />
       <Navbar.Collapse>
-        <Navbar.Link href="/" active>
+        <Navbar.Link href="/">
           Home
         </Navbar.Link>
         <Navbar.Link href="#">About</Navbar.Link>
