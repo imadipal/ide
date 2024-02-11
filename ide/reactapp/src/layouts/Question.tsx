@@ -4,7 +4,6 @@ import "codemirror/mode/javascript/javascript";
 import { Button, Dropdown, Label } from "flowbite-react";
 import { FormEvent, useState } from "react";
 import { ProblemDescription } from "./Components/problemDescription";
-import Split from "react-split";
 import { Problem } from "../utils/problem";
 
 type WorkspaceProps = {
@@ -27,7 +26,7 @@ export const QuestionPage: React.FC<WorkspaceProps> = ({ problem }) => {
 
   return (
     <>
-      <div className=" mt-2 ml-2 mb-2 mr-2">
+      <div className=" m-2">
         <Dropdown
           id="dropdown"
           label={selectedLanguage}
@@ -41,19 +40,9 @@ export const QuestionPage: React.FC<WorkspaceProps> = ({ problem }) => {
           <Dropdown.Item value={"jsx"}>JavaScript</Dropdown.Item>
         </Dropdown>
       </div>
-      <Split
-        className="wrap"
-        sizes={[25, 75]}
-        minSize={100}
-        expandToMin={false}
-        gutterSize={10}
-        gutterAlign="center"
-        snapOffset={30}
-        dragInterval={1}
-        direction="horizontal"
-        cursor="col-resize"
-      >
+      <div className="grid gap-4 grid-cols-2 col-span-2">
         <ProblemDescription problem={problem} />
+
         <div className="bg-dark-fill-2">
           <div>
             <div className="">
@@ -67,49 +56,47 @@ export const QuestionPage: React.FC<WorkspaceProps> = ({ problem }) => {
                 onChange={onChange}
               />
             </div>
-            <Split sizes={[50, 50]} direction="vertical">
+            <div className="gap-4 grid grid-rows-2">
               <div>
-                <div>
-                  <Label
-                    className=" font-bold m-2"
-                    htmlFor="input"
-                    value="Input"
-                  />
-                  <CodeMirror
-                    className=" m-2"
-                    value={""}
-                    height="auto"
-                    width="auto"
-                    theme={"dark"}
-                  />
-                </div>
-                <div>
-                  <Label
-                    className=" font-bold m-2"
-                    htmlFor="output"
-                    value="Output"
-                  />
-                  <CodeMirror
-                    className=" m-2"
-                    value={""}
-                    height="auto"
-                    width=""
-                    theme={"dark"}
-                  />
-                </div>
-                <div className="grid gap-4 grid-cols-2">
-                  <Button className="m-2 bg-red-500 hover:bg-red-600 text-white font-bold rounded">
-                    Run
-                  </Button>
-                  <Button className="m-2 bg-green-500 hover:bg-green-600 text-white font-bold rounded">
-                    Submit
-                  </Button>
-                </div>
+                <Label
+                  className=" font-bold m-2"
+                  htmlFor="input"
+                  value="Input"
+                />
+                <CodeMirror
+                  className=" m-2"
+                  value={""}
+                  height="auto"
+                  width="auto"
+                  theme={"dark"}
+                />
               </div>
-            </Split>
+              <div>
+                <Label
+                  className=" font-bold m-2"
+                  htmlFor="output"
+                  value="Output"
+                />
+                <CodeMirror
+                  className=" m-2"
+                  value={""}
+                  height="auto"
+                  width="auto"
+                  theme={"dark"}
+                />
+              </div>
+              <div className="grid gap-4 grid-cols-2">
+                <Button className="m-2 bg-red-500 hover:bg-red-600 text-white font-bold rounded">
+                  Run
+                </Button>
+                <Button className="m-2 bg-green-500 hover:bg-green-600 text-white font-bold rounded">
+                  Submit
+                </Button>
+              </div>
+            </div>
           </div>
         </div>
-      </Split>
+      </div>
     </>
   );
 };

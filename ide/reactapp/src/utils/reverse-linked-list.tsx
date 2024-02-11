@@ -81,7 +81,7 @@ function reverseLinkedList(head) {
 
 export const reverseLinkedList: Problem = {
 	id: "reverse-linked-list",
-	title: " Reverse Linked List",
+	title: "Reverse Linked List",
 	problemStatement: `<p class='mt-3'>Given the <code>head</code> of a singly linked list, reverse the list, and return <em>the reversed list</em>.</p>
 	`,
 	examples: [
