@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from rest_framework.views import APIView
 import sys
 import json
 import requests
@@ -9,7 +10,7 @@ from django.views.decorators.csrf import csrf_exempt
 def greetings(request):
     res = render(request,'index.html')
     return res
-
+def execute(APIView)
 def runcode(request):
     if request.method == 'POST':
         code_part = request.POST['code_area']
