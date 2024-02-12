@@ -1,6 +1,6 @@
+import subprocess
 from django.shortcuts import render
 from django.http import HttpResponse
-from rest_framework.views import APIView
 import sys
 import json
 import requests
@@ -10,7 +10,23 @@ from django.views.decorators.csrf import csrf_exempt
 def greetings(request):
     res = render(request,'index.html')
     return res
-def execute(APIView)
+@csrf_exempt
+def execute(request):
+    if request.method == 'POST':
+        code = request.POST.get('code', '')
+        user_input = request.POST.get('user_input', '')
+
+        # Combine code and user input for execution
+        full_code = f"{code}\nuser_input = '{user_input}'"
+
+        try:
+            result = subprocess.check_output(['python', '-c', full_code], stderr=subprocess.STDOUT, text=True)
+            return JsonResponse({'output': result}, status=200)
+        except subprocess.CalledProcessError as e:
+            return JsonResponse({'error': e.output}, status=400)
+
+    return JsonResponse({'error': 'Invalid request method'}, status=400)
+
 def runcode(request):
     if request.method == 'POST':
         code_part = request.POST['code_area']

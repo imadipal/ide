@@ -24,6 +24,34 @@ export const QuestionPage: React.FC<WorkspaceProps> = ({ problem }) => {
     setCode(value);
   };
 
+//   function executeCode() {
+//     const codeInput = document.getElementById("codeInput").value;
+//     const userInput = document.getElementById("userInput").value;
+
+//     fetch("http://localhost:8000/api/execute/", {
+//       method: "POST",
+//       headers: {
+//         "Content-Type": "application/x-www-form-urlencoded",
+//       },
+//       body: `code=${encodeURIComponent(
+//         codeInput
+//       )}&user_input=${encodeURIComponent(userInput)}`,
+//     })
+//       .then((response) => response.json())
+//       .then((data) => {
+//         if ("output" in data) {
+//           document.getElementById(
+//             "output"
+//           ).innerText = `Output: ${data.output}`;
+//         } else if ("error" in data) {
+//           document.getElementById("output").innerText = `Error: ${data.error}`;
+//         }
+//       })
+//       .catch((error) => {
+//         console.error("Error:", error);
+//       });
+//   }
+
   return (
     <>
       <div className=" m-2">
@@ -48,6 +76,7 @@ export const QuestionPage: React.FC<WorkspaceProps> = ({ problem }) => {
             <div className="">
               <Label className=" font-bold m-2" htmlFor="code" value="Code" />
               <CodeMirror
+                id="codeInput"
                 className=" m-2"
                 value={code}
                 height="80vh"
@@ -64,6 +93,7 @@ export const QuestionPage: React.FC<WorkspaceProps> = ({ problem }) => {
                   value="Input"
                 />
                 <CodeMirror
+                  id="userInput"
                   className=" m-2"
                   value={""}
                   height="auto"
@@ -78,6 +108,7 @@ export const QuestionPage: React.FC<WorkspaceProps> = ({ problem }) => {
                   value="Output"
                 />
                 <CodeMirror
+                  id="output"
                   className=" m-2"
                   value={""}
                   height="auto"
@@ -86,10 +117,10 @@ export const QuestionPage: React.FC<WorkspaceProps> = ({ problem }) => {
                 />
               </div>
               <div className="grid gap-4 grid-cols-2">
-                <Button className="m-2 bg-red-500 hover:bg-red-600 text-white font-bold rounded">
+                <Button className="m-2 bg-red-500 hover:bg-red-600 text-white font-bold rounded" >
                   Run
                 </Button>
-                <Button className="m-2 bg-green-500 hover:bg-green-600 text-white font-bold rounded">
+                <Button className="m-2 bg-green-500 hover:bg-green-600 text-white font-bold rounded" >
                   Submit
                 </Button>
               </div>
